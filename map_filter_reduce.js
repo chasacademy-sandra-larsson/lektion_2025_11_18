@@ -62,4 +62,86 @@ const productsWithDiscount = products.map(product => {
         }
 });   
 
-console.log("ProductWithDiscount", productsWithDiscount)
+console.log("ProductWithDiscount", productsWithDiscount);
+
+// Exempel 3: Använd filter() för att filtrera produkter
+
+// Per kategori "Electronics"
+const productsElectronics = products.filter((product) => product.category === "Electronics");
+console.log("productElectronics", productsElectronics);
+
+
+// Varorna som finns i lager stock > 0
+const productsInStock = products.filter(product => product.stock > 0);
+console.log("productsInstock", productsInStock);
+
+// Varorna som finns är få kvar stock > 30
+const productsFewLeft = products.filter(product => product.stock < 30);
+console.log("productsFewLeft ", productsFewLeft);
+
+// Filterera på flera villkor - kategori "Clothin" med discount > 0
+const clothingWithDiscount = products.filter(product => product.category === "Clothing" && product.discount > 0);
+console.log("clothingWithDiscoutn", clothingWithDiscount);
+
+
+// Exempel 4:
+// Reduce 
+// istället för
+// let sum = 0
+// const products = [{},{},{}]
+// for(let i=0; i < products.length; i++) {
+//    sum += products[i].price * products[i].stock;
+//}
+// console.log(sum);
+
+// Beräkna totalStock
+const totalStock = products.reduce((sum, product) => sum + product.stock, 0);
+console.log("totalStock", totalStock);
+
+// Beräkna totalt lagervärder (pris * lager för varje product)
+const totalInventoryValue = products.reduce((sum, product) => sum + (product.price * product.stock), 0);
+console.log("totalInventoryValue", totalInventoryValue);
+
+// Exempel 5: Använd sort för att sortera arrayen på lägst => högst pris och högt => lägst
+
+const sortProductsLowestToHighest = products.sort((a, b) => (a.price - b.price));
+console.log("sortProductsLowestToHighest", sortProductsLowestToHighest);
+
+const sortProductsHighestToLowest = products.sort((a, b) => (b.price - a.price));
+console.log("sortProductsHighestToLowest", sortProductsHighestToLowest);
+
+
+// Array med användare
+const users = [
+    { id: 1, name: "Anna Andersson", email: "anna@example.com", role: "admin", active: true },
+    { id: 2, name: "Erik Johansson", email: "erik@example.com", role: "user", active: true },
+    { id: 3, name: "Maria Svensson", email: "maria@example.com", role: "user", active: false },
+    { id: 4, name: "Lars Nilsson", email: "lars@example.com", role: "moderator", active: true },
+    { id: 5, name: "Sara Karlsson", email: "sara@example.com", role: "user", active: true },
+    { id: 6, name: "Johan Larsson", email: "johan@example.com", role: "user", active: false }
+];
+
+
+// Exempel 6: find() - hittar första match  (som filter men returnera endast första som överenstämmer villkoret)
+// Hitta specifik användare efter email
+
+const userByEmail = users.find(user => user.email === "maria@example.com");
+console.log("userByEmail", userByEmail);
+
+const userIndexByEmail = users.findIndex(user => user.email === "maria@example.com");
+console.log("userIndexByEmail", userIndexByEmail);
+
+
+
+// Exempel 7: Använd every() om alla användare är aktiva
+const usersActive = users.every(user => user.active === true);
+console.log("usersActive", usersActive);
+
+// Exempel 8: Avnänd some() för att se om någon användare är aktiv
+
+const isSomeoneActive = users.some(user => user.active === true);
+console.log("isSomeoneActive", isSomeoneActive);
+
+// Kontrollera om någon användare är admin?
+const isSomeoneAdmin = users.some(user => user.role === "admin");
+console.log("isSomeoneAdmin", isSomeoneAdmin);
