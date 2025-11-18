@@ -39,3 +39,27 @@ const products = [
     { id: 14, name: "Shoes", price: 1299, category: "Clothing", stock: 45, discount: 0.05 },
     { id: 15, name: "Water Bottle", price: 149, category: "Food & Drink", stock: 80, discount: 0 }
 ];
+
+// Exempel 1 - Använd map för att mappa <li></li> runt varje item. Innehållet ska vara produktnamn med pris
+// join() - från array => sträng
+const productList = products
+                    .map( product => `<li>${product.name} kostar ${product.price}</li>`)
+                    .join(""); // Att man bygger på array-metoder efter hand med . kallas för chaining
+
+const myList = document.getElementById("myList");
+
+myList.innerHTML = productList;
+
+// Exempel 2. Använd map för att beräkna det rabatterade priset för alla producter
+const productsWithDiscount = products.map(product => {
+
+        const discount = Math.round((1 - product.discount) * product.price);
+
+        return {
+            name: product.name,
+            orginalPrice: product.price,
+            discount: discount
+        }
+});   
+
+console.log("ProductWithDiscount", productsWithDiscount)
